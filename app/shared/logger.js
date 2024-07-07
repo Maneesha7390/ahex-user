@@ -1,5 +1,4 @@
 const moment = require('moment');
-const winstonLogger = require('./logger.winston');
 
 exports.error = error;
 exports.warn = warn;
@@ -12,9 +11,8 @@ exports.exception = exception;
  * @param {*} message 
  */
 async function info(message) {
-  message = ` ${moment.utc()} | ${message}`;
+  message = `${moment().toLocaleString()} | ${message}`;
   console.info(message);
-  winstonLogger.info(message);
 };
 
 /**
@@ -22,9 +20,8 @@ async function info(message) {
  * @param {*} message 
  */
 async function debug(message) {
-  message = ` ${moment.utc()} |  ${message}`;
+  message = `${moment().toLocaleString()} | ${message}`;
   console.debug(message);
-  winstonLogger.debug(message);
 };
 
 /**
@@ -32,9 +29,8 @@ async function debug(message) {
  * @param {*} message 
  */
 async function warn(message) {
-  message = `${moment.utc()} |  ${message}`;
+  message = `${moment().toLocaleString()} | ${message}`;
   console.warn(message);
-  winstonLogger.warn(message);
 };
 
 /**
@@ -42,18 +38,15 @@ async function warn(message) {
  * @param {*} message 
  */
 async function error(message) {
-  message = ` ${moment.utc()} |  ${message}`;
+  message = `${moment().toLocaleString()} | ${message}`;
   console.error(message);
-  winstonLogger.error(message);
 };
 
 /**
  * 
  * @param {*} ex 
- * @param {*} req 
  */
-async function exception(ex, req) {
-  const message = ` message:${ex.message} |description : ${ex.description} | stacktrace: ${ex.stack}`;
+async function exception(ex) {
+  const message = `message:${ex.message} |description : ${ex.description} | stacktrace: ${ex.stack}`;
   error(`${message}`);
-  winstonLogger.error(message);
 };

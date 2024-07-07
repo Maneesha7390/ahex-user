@@ -34,6 +34,24 @@ const signInUser = async (userData, port = 3000) => {
     }
 };
 
+const VerifyUserViaEmail = async (userData, port = 3000) => {
+    try {
+        const response = await axios.post(`http://localhost:${port}/api/users/signin`, userData);
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response ? error.response.data : error.message);
+    }
+};
+
+const VerifyUserViaSMS = async (userData, port = 3000) => {
+    try {
+        const response = await axios.post(`http://localhost:${port}/api/users/signin`, userData);
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response ? error.response.data : error.message);
+    }
+};
+
 module.exports = {
     startServer,
     stopServer,
