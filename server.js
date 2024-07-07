@@ -4,7 +4,6 @@ const logger = require('./app/shared/logger')
 const errorHandler = require('./app/middleware/error-handle');
 const init = require('./app/startup/init');
 require('express-async-errors');
-// const {registerUser} = require('./app/modules/user/user.controller')
 const PORT = process.env.PORT || 5000;
 const userRoutes = require('./app/modules/user/user.route');
 
