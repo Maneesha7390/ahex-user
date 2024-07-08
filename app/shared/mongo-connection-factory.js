@@ -22,7 +22,7 @@ const connections = new Map();
 
 function baseConnectionURL(){
     dotenv.config({path: `${__dirname}/../.env`})
-    connectionString = process.env.MONGODB_BASE_URL.replace('{DBName}', process.env.DATABASE_NAME) || ''
+    connectionString = process.env.MONGODB_BASE_URL.replace('{userName}', process.env.MONGODB_USER).replace('{password}', process.env.MONGODB_PASSWORD).replace('{DBName}', process.env.DATABASE_NAME);
     // console.log('connectionString....', connectionString)
     return connectionString
 }

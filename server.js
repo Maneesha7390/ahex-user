@@ -26,36 +26,3 @@ async function startup() {
     app.use('/api/users', userRoutes);
     app.use(errorHandler);;
 }
-
-function registerUser(app) {
-    app.post('/register', (req, res, next) => userRoutes.handle(req, res, next));
-}
-
-function signInUser(app) {
-    app.post('/signin', (req, res, next) => userRoutes.handle(req, res, next));
-}
-
-function verifyViaOTP(app) {
-    app.post('/verify/email-otp', (req, res, next) => userRoutes.handle(req, res, next));
-}
-
-function verifyViaSMS(app) {
-    app.post('/verify/sms-otp', (req, res, next) => userRoutes.handle(req, res, next));
-}
-
-function resendVerifyEmail(app) {
-    app.post('/resend/email-otp', (req, res, next) => userRoutes.handle(req, res, next));
-}
-
-function resendVerifySMS(app) {
-    app.post('/resend/sms-otp', (req, res, next) => userRoutes.handle(req, res, next));
-}
-
-module.exports = {
-    registerUser,
-    signInUser,
-    verifyViaOTP,
-    verifyViaSMS,
-    resendVerifyEmail,
-    resendVerifySMS
-};
