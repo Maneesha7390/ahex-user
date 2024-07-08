@@ -31,8 +31,8 @@ function registerUser(app) {
     app.post('/register', (req, res, next) => userRoutes.handle(req, res, next));
 }
 
-function inviteUser(app) {
-    app.post('/invite', (req, res, next) => userRoutes.handle(req, res, next));
+function signInUser(app) {
+    app.post('/signin', (req, res, next) => userRoutes.handle(req, res, next));
 }
 
 function verifyViaOTP(app) {
@@ -52,9 +52,8 @@ function resendVerifySMS(app) {
 }
 
 module.exports = {
-    startup,
     registerUser,
-    inviteUser,
+    signInUser,
     verifyViaOTP,
     verifyViaSMS,
     resendVerifyEmail,
