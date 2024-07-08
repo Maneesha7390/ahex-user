@@ -1,11 +1,11 @@
 {
-  "name": "ahex-users",
+  "name": "ahex-user",
   "version": "1.0.0",
   "description": "This Package is about user registration which includes userRegistration, verify account using mail OTP or SMS OTP, Login",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "keywords": ["signIn", "signUp", "emailVerification", "otpService", "twilio", "nodemailer"],
   "author": "Maneesha Padavala",
