@@ -1,6 +1,6 @@
 {
   "name": "ahex-user",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "This Package is about user registration which includes userRegistration, verify account using mail OTP or SMS OTP, Login",
   "main": "index.js",
   "scripts": {
