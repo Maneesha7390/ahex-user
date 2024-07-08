@@ -140,4 +140,4 @@ The following services are provided for user management:
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the ISC License.
