@@ -1,15 +1,22 @@
 {
-  "name": "ahex-user",
-  "version": "1.0.0",
-  "description": "This Package is about user registration which includes userRegistration, verify account using mail OTP or SMS OTP, Login",
-  "main": "index.js",
+  "name": "ahextech-user",
+  "version": "1.0.3",
+  "description": "A package for user management functionalities including registration, OTP verification, and sign-in.",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node server.js"
   },
-  "keywords": ["signIn", "signUp", "emailVerification", "otpService", "twilio", "nodemailer"],
+  "keywords": ["signIn", "signUp", "emailVerification", "otpService", "twilio", "nodemailer", "user", "registration", "otp"],
   "author": "Maneesha Padavala",
   "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maneesha7390/ahex-user.git"
+  },
   "dependencies": {
     "axios": "^1.7.2",
     "bcrypt": "^5.1.1",

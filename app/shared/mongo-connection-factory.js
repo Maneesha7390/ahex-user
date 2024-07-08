@@ -22,19 +22,19 @@ const connections = new Map();
 
 function baseConnectionURL(){
     dotenv.config({path: `${__dirname}/../.env`})
-    connectionString = process.env.MONGODB_BASE_URL
-    console.log('connectionString....', connectionString)
+    connectionString = process.env.MONGODB_BASE_URL.replace('{userName}', process.env.MONGODB_USER).replace('{password}', process.env.MONGODB_PASSWORD).replace('{DBName}', process.env.DATABASE_NAME);
+    // console.log('connectionString....', connectionString)
     return connectionString
 }
 
-subscribeToEvents(mongoose.connection, CONSTANTS.DATABASE_NAME);
+subscribeToEvents(mongoose.connection, process.env.DATABASE_NAME);
 
 
 async function connect(){
     try{
         baseConnectionString = baseConnectionURL()
         const cluster_connection = await mongoose.createConnection(baseConnectionString, options)
-        subscribeToEvents(cluster_connection, CONSTANTS.DATABASE_NAME);
+        subscribeToEvents(cluster_connection, process.env.DATABASE_NAME);
         connections.set('ahex-user', cluster_connection);
     }catch(err){
         logger.error(`Error connecting to the database`);

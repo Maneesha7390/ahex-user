@@ -4,9 +4,10 @@ const logger = require('./app/shared/logger')
 const errorHandler = require('./app/middleware/error-handle');
 const init = require('./app/startup/init');
 require('express-async-errors');
-// const {registerUser} = require('./app/modules/user/user.controller')
-const PORT = process.env.PORT || 5000;
 const userRoutes = require('./app/modules/user/user.route');
+const dotenv =  require('dotenv')
+dotenv.config({path: `${__dirname}/.env`})
+const PORT = process.env.PORT || 5000;
 
 startup().then(() => {
     app.listen(PORT, () => {
@@ -26,36 +27,4 @@ async function startup() {
     app.use(errorHandler);;
 }
 
-function registerUser(app) {
-    app.post('/register', (req, res, next) => userRoutes.handle(req, res, next));
-}
 
-function inviteUser(app) {
-    app.post('/invite', (req, res, next) => userRoutes.handle(req, res, next));
-}
-
-function verifyViaOTP(app) {
-    app.post('/verify/email-otp', (req, res, next) => userRoutes.handle(req, res, next));
-}
-
-function verifyViaSMS(app) {
-    app.post('/verify/sms-otp', (req, res, next) => userRoutes.handle(req, res, next));
-}
-
-function resendVerifyEmail(app) {
-    app.post('/resend/email-otp', (req, res, next) => userRoutes.handle(req, res, next));
-}
-
-function resendVerifySMS(app) {
-    app.post('/resend/sms-otp', (req, res, next) => userRoutes.handle(req, res, next));
-}
-
-module.exports = {
-    startup,
-    registerUser,
-    inviteUser,
-    verifyViaOTP,
-    verifyViaSMS,
-    resendVerifyEmail,
-    resendVerifySMS
-};
