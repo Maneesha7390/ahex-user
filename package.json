@@ -1,6 +1,6 @@
 {
   "name": "ahextech-user",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A package for user management functionalities including registration, OTP verification, and sign-in.",
   "main": "server.js",
   "scripts": {
