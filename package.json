@@ -1,5 +1,5 @@
 {
-  "name": "ahex-user",
+  "name": "ahextech-user",
   "version": "1.0.0",
   "description": "This Package is about user registration which includes userRegistration, verify account using mail OTP or SMS OTP, Login",
   "main": "server.js",
@@ -10,6 +10,9 @@
   "keywords": ["signIn", "signUp", "emailVerification", "otpService", "twilio", "nodemailer"],
   "author": "Maneesha Padavala",
   "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
