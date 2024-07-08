@@ -11,6 +11,22 @@ To install the package, use:
 npm install ahextech-user
 ```
 
+## Environment Variables
+
+Make sure to set the following environment variables in your project:
+
+```env
+PORT=yoour_port
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+EMAIL_SERVICE=your_email_service_provider
+EMAIL_USER=your_email_user
+EMAIL_PASS=your_email_password
+TWILIO_ACCOUNT_SID=your_twilio_account_sid
+TWILIO_AUTH_TOKEN=your_twilio_auth_token
+TWILIO_PHONE_NUMBER=your_twilio_phone_number
+```
+
 ## API Endpoints
 
 ### Register User
