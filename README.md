@@ -142,17 +142,17 @@ For getting clientID, ClientSecret from googole-auth do follow this steps [Word]
 - **Initiate Google Authentication:**
     - **Endpoint:** `/google`
     - **Method**: `GET`
-    - **Description**: `Initiates the Google Single Sign-On (SSO) process. Redirects the user to Google's authentication page with required scopes for profile and email.`
+    - **Description**: Initiates the Google Single Sign-On (SSO) process. Redirects the user to Google's authentication page with required scopes for profile and email.
 
 - **Google SSO Callback:**
     - **Endpoint:** `/google/callback`
     - **Method**: `GET`
-    - **Description:** `Callback URL for Google SSO. Handles authentication callback from Google. On success, redirects to /success, and on failure, redirects to /failure.`
+    - **Description:** Callback URL for Google SSO. Handles authentication callback from Google. On success, redirects to /success, and on failure, redirects to /failure.
 
 - **Success Page:**
     - **Endpoint:** `/success`
     - **Method:** `GET`
-    - **Description:** `Displays success message or page after successful Google SSO authentication.`
+    - **Description:** Displays success message or page after successful Google SSO authentication.
     
 - **Failure Page:**
     - **Endpoint:** /failure
