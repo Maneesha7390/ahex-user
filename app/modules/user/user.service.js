@@ -15,7 +15,9 @@ const registerUser = async (userData) => {
         createdAt: timeNow,
         updatedAt: timeNow,
         createdBy: userData.firstName+' '+userData.lastName,
-        password: userData.password
+        password: userData.password,
+        picture: userData.picture || '',
+        provider: userData.provider || ''
     }
     const newUser = new User()(framedData);
     await newUser.save();
@@ -33,7 +35,6 @@ async function uniqueUserCheck(email) {
 
 async function updateOTPs(email, otp, key){
     const response = await User().updateOne({email}, {[`${key}OTP`]: otp, [`${key}OTPExpiration`]: moment().add(10, 'minutes').valueOf(), updateAt: timeNow, updateBy: email})
-    console.log(response)
 }
 
 async function verifyOTPViaEmail(email, OTP){
@@ -99,11 +100,16 @@ async function findUser(email){
     return response
 }
 
+async function updateProvider(email, provider, picture){
+    const response = await User().updateOne({email}, {provider, picture, googleSSO: true, updatedAt: timeNow, updatedBy: email}, {upsert:true})
+}
+
 module.exports = {
     registerUser,
     uniqueUserCheck,
     updateOTPs,
     verifyOTPViaEmail,
     verifyOTPViaSMS,
-    findUser
+    findUser,
+    updateProvider
 };

@@ -11,6 +11,22 @@ To install the package, use:
 npm install ahextech-user
 ```
 
+## Environment Variables
+
+Make sure to set the following environment variables in your project:
+
+```env
+PORT=yoour_port
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+EMAIL_SERVICE=your_email_service_provider
+EMAIL_USER=your_email_user
+EMAIL_PASS=your_email_password
+TWILIO_ACCOUNT_SID=your_twilio_account_sid
+TWILIO_AUTH_TOKEN=your_twilio_auth_token
+TWILIO_PHONE_NUMBER=your_twilio_phone_number
+```
+
 ## API Endpoints
 
 ### Register User
@@ -114,6 +130,30 @@ npm install ahextech-user
   "password": "password123"
 }
 ```
+### Google SSO
+- **Initiate Google Authentication:**
+    - **Endpoint:** `/google`
+    - **Method**: `GET`
+    - **Description**: `Initiates the Google Single Sign-On (SSO) process. Redirects the user to Google's authentication page with required scopes for profile and email.`
+
+- **Google SSO Callback:**
+    - **Endpoint:** `/google/callback`
+    - **Method**: `GET`
+    - **Description:** `Callback URL for Google SSO. Handles authentication callback from Google. On success, redirects to /success, and on failure, redirects to /failure.`
+
+- **Success Page:**
+    - **Endpoint:** `/success`
+    - **Method:** `GET`
+    - **Description:** `Displays success message or page after successful Google SSO authentication.`
+    
+- **Failure Page:**
+    - **Endpoint:** /failure
+    - **Method:** GET
+    - **Description:** Displays failure message or page after failed Google SSO authentication.
+
+### Google SSO Testing
+
+For a detailed implementation of Google SSO using Passport.js and how it integrates with this project, watch this [Loom video](https://www.loom.com/share/a1009acba4fb41088cb1b6953101086e?sid=afa9368d-aeab-4f55-8be3-38b18d475153).
 
 ## Validation
 

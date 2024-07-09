@@ -26,5 +26,3 @@ async function startup() {
     app.use('/api/users', userRoutes);
     app.use(errorHandler);;
 }
-
-

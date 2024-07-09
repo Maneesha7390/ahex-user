@@ -21,7 +21,9 @@ module.exports = {
   resendOtpViaSMS,
   emailVerificationStatus,
   phoneNumberVerificationStatus,
-  signInUser
+  signInUser,
+  failurePage,
+  sucessPage
 };
 
 async function registerUser(req, res, next) {
@@ -257,6 +259,21 @@ async function signInUser(req, res, next) {
     throw new ServerError(500, ERROR_MESSAGES.REGISTER_USER_FAILED, ex.message);
   }
 }
+
+async function failurePage(req, res) {
+  res.status(401).redirect(process.env.FAILURE_REDIRECT)
+}
+
+async function sucessPage(req, res){
+  try {
+      if (req.user) {
+          res.status(200).redirect(process.env.SUCCESS_REDIRECT)
+      }
+  } catch (error) {
+      res.status(401).redirect(process.env.FAILURE_REDIRECT)
+  }
+}
+
 
 async function verifyUser(req, res) {
   const { token } = req.params;
