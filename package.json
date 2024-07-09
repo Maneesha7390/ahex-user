@@ -1,13 +1,23 @@
 {
   "name": "ahextech-user",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A package for user management functionalities including registration, OTP verification, and sign-in.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "keywords": ["signIn", "signUp", "emailVerification", "otpService", "twilio", "nodemailer", "user", "registration", "otp"],
+  "keywords": [
+    "signIn",
+    "signUp",
+    "emailVerification",
+    "otpService",
+    "twilio",
+    "nodemailer",
+    "user",
+    "registration",
+    "otp"
+  ],
   "author": "Maneesha Padavala",
   "license": "ISC",
   "publishConfig": {
@@ -27,6 +37,7 @@
     "express": "^4.19.2",
     "express-async-errors": "^3.1.1",
     "express-fileupload": "^1.5.0",
+    "express-session": "^1.18.0",
     "helmet": "^7.1.0",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
@@ -34,6 +45,8 @@
     "mongoose": "^8.4.4",
     "morgan": "^1.10.0",
     "nodemailer": "^6.9.14",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
     "twilio": "^5.2.2"
   }
 }
