@@ -130,6 +130,9 @@ TWILIO_PHONE_NUMBER=your_twilio_phone_number
   "password": "password123"
 }
 ```
+### GCP Account setup 
+For getting clientID, ClientSecret from googole-auth do follow this steps [Word](https://docs.google.com/document/d/11pSvp4d3AoU8vtu_K4deTDhRpuLT1A9-oDMIi1tnEfY/edit?usp=sharing).
+
 ### Google SSO
 - **Initiate Google Authentication:**
     - **Endpoint:** `/google`
