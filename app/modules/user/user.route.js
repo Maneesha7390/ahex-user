@@ -12,6 +12,8 @@ router.post('/resend/sms-otp', validateUser,userController.resendOtpViaSMS)
 router.post('/signin', validateUser, userController.signInUser);
 router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }))
 router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/api/users/failure', successRedirect: '/api/users/success' }))
+router.get('/facebook', passport.authenticate('facebook'));
+router.get('/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/api/users/failure', successRedirect: '/api/users/success' }))
 router.get('/success', userController.sucessPage)
 router.get('/failure', userController.failurePage)
 
