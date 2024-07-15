@@ -45,17 +45,7 @@ async function registerUser(req, res, next) {
     let emailOTP = ''
     let smsOTP = ''
     const response = await userService.registerUser({ ...reqBody});
-    if(response && email){
-      emailOTP = generateOtp()
-      await sendOTPviaEmail(email, emailOTP, firstName)
-      await userService.updateOTPs(email, emailOTP, 'email')
-    }
-    if (response && phoneNumber){
-      smsOTP = generateOtp()
-      await sendOTPviaSms( phoneNumber, smsOTP, firstName)
-      await userService.updateOTPs(email, smsOTP, 'sms')
-    }
-    return sendResponse(req, res, next, { id: response._id.toString(), email }, new Status(201, "User registration successful", ''));
+        return sendResponse(req, res, next, { id: response._id.toString(), email }, new Status(201, "User registration successful", ''));
 
   } catch (ex) {
     if (ex instanceof ClientError) {

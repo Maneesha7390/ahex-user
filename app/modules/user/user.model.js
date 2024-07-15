@@ -12,7 +12,7 @@ const userSchema = new Schema({
   firstName: { type: String},
   lastName: { type: String},
   email: { type: String, unique: true, required: true },
-  password: { type: String, required: true  },
+  password: { type: String},
   phoneNumber: { type: String,  unique: true},
   emailVerification: { type: Boolean, default: false },
   phoneVerification: { type: Boolean, default: false },
@@ -22,7 +22,9 @@ const userSchema = new Schema({
   emailOTPExpiration: { type: Number, default: null},
   picture:{type: String, default: ''},
   googleSSO:{type: Boolean, default: false},
-  provider: {type: String, enum: ['google', 'facebook', 'github', 'linkedin', 'twitter'], default: null },
+  facebookId: {type: String, default: ''},
+  facebookSSO: {type: Boolean, default: false},
+  providers: { type: [String], enum: ['google', 'facebook', 'github', 'linkedin', 'twitter'], default: [] },
   createdAt:Number,
   updatedAt: Number,
   createdBy: String,
@@ -32,7 +34,7 @@ const userSchema = new Schema({
 
 userSchema.pre('save', async function(next) {
     const user = this;
-    if (!user.isModified('password')) return next();
+    if (!user.isModified('password')|| !user.password) return next();
 
     try {
         const salt = await bcrypt.genSalt(12);

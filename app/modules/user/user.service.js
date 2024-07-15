@@ -5,6 +5,7 @@ const ClientError = require('../../shared/models/client-error.model');
 const ServerError = require('../../shared/models/server-error.model');
 const ERROR_MESSAGES = require('../../shared/error-messages');
 const logger = require('../../shared/logger');
+const {generateOtp, sendOTPviaEmail, sendOTPviaSms, sendLoginFailedMail, sendLoginEmail } = require('../../shared/utils/userEmail');
 
 const registerUser = async (userData) => {
     let framedData = {
@@ -17,10 +18,21 @@ const registerUser = async (userData) => {
         createdBy: userData.firstName+' '+userData.lastName,
         password: userData.password,
         picture: userData.picture || '',
-        provider: userData.provider || ''
+        provider: userData.provider ? [userData.provider]: [],
+        googleSSO: userData.googleSSO || false
     }
     const newUser = new User()(framedData);
     await newUser.save();
+    if(newUser && userData.email){
+        emailOTP = generateOtp()
+        await sendOTPviaEmail(userData.email, emailOTP, userData.firstName)
+        await updateOTPs(userData.email, emailOTP, 'email' )
+      }
+      if (newUser && userData.phoneNumber){
+        smsOTP = generateOtp()
+        await sendOTPviaSms( userData.phoneNumber, smsOTP, userData.firstName)
+        await updateOTPs(userData.email, smsOTP, 'sms')
+      }
     return newUser;
 };
 
@@ -94,14 +106,28 @@ async function verifyOTPViaSMS(email, phoneNumber, OTP){
         throw new ServerError(500, ERROR_MESSAGES.REGISTER_USER_FAILED, ex.message);
       }
 }
-
+ 
 async function findUser(email){
     let response = await User().findOne({email}).lean()
     return response
 }
+async function findUserByFacebookId(facebookId){
+    let response = await User().find({facebookId})
+    return response
+}
 
 async function updateProvider(email, provider, picture){
-    const response = await User().updateOne({email}, {provider, picture, googleSSO: true, updatedAt: timeNow, updatedBy: email}, {upsert:true})
+    const ssoField = `${provider.toLowerCase()}SSO`
+    const response = await User().updateOne({email, ssoField: false}, {
+        $addToSet: { providers: provider },
+        $set: {
+            picture,
+            googleSSO: true,
+            updatedAt: timeNow,
+            updatedBy: email
+        }
+    }, {upsert:true})
+    console.log(response)
 }
 
 module.exports = {
@@ -111,5 +137,6 @@ module.exports = {
     verifyOTPViaEmail,
     verifyOTPViaSMS,
     findUser,
+    findUserByFacebookId,
     updateProvider
 };
