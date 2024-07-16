@@ -18,6 +18,9 @@ Make sure to set the following environment variables in your project:
 ```env
 PORT=yoour_port
 MONGO_URI=your_mongodb_uri
+DATABASE_NAME= your_database_name
+MONGODB_USER=db_user
+MONGODB_PASSWORD = your_db_user_password
 JWT_SECRET=your_jwt_secret
 EMAIL_SERVICE=your_email_service_provider
 EMAIL_USER=your_email_user
